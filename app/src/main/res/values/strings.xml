@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">sn2app</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_info_screen">InfoScreen</string>
+    <string name="title_activity_products_screen">ProductsScreen</string>
+    <string name="title_activity_person_page">PersonPage</string>
 </resources>
