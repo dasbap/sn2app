@@ -1,5 +1,6 @@
 package com.example.sn2app
 
+import ProductsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,11 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-
 import com.example.sn2app.ui.theme.Sn2appTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,10 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Sn2appTheme {
-                // Créer un NavController
                 val navController = rememberNavController()
 
-                // Créer la structure de navigation
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     NavHost(
                         navController = navController,
@@ -36,12 +32,14 @@ class MainActivity : ComponentActivity() {
                         composable("info") {
                             InfoScreen(navController)
                         }
-                        composable("personPage/{personName}") { backStackEntry ->
-                            backStackEntry.arguments?.getString("personName")
-                                ?.let { PersonPage(personName = it) }
-                        }
                         composable("products") {
                             ProductsScreen(navController)
+                        }
+                        composable("productList/{productsUrl}") { backStackEntry ->
+                            val productsUrl = backStackEntry.arguments?.getString("productsUrl")
+                            productsUrl?.let {
+                                ProductListScreen(productsUrl = it)
+                            }
                         }
                     }
                 }
