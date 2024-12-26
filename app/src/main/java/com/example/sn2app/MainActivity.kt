@@ -1,6 +1,5 @@
 package com.example.sn2app
 
-import ProductsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,15 +30,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("info") {
                             InfoScreen(navController)
-                        }
-                        composable("products") {
-                            ProductsScreen(navController)
-                        }
-                        composable("productList/{productsUrl}") { backStackEntry ->
-                            val productsUrl = backStackEntry.arguments?.getString("productsUrl")
-                            productsUrl?.let {
-                                ProductListScreen(productsUrl = it)
-                            }
                         }
                     }
                 }
