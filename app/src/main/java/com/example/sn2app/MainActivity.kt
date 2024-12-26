@@ -1,5 +1,6 @@
 package com.example.sn2app
 
+import CategoryProductsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,12 +15,12 @@ import androidx.navigation.compose.*
 
 import com.example.sn2app.ui.theme.Sn2appTheme
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Activer l'affichage plein écran
         val controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
 
@@ -44,6 +45,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("products") {
                             ProductsScreen(navController)
+                        }
+                        composable("categoryProducts/{categoryUrl}") { backStackEntry ->
+                            val categorytitle = backStackEntry.arguments?.getString("title")
+                            categorytitle?.let {
+                                CategoryProductsScreen(navController = navController, categoryName = categorytitle)
+                            }
                         }
                     }
                 }

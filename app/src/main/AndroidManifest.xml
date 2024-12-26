@@ -15,6 +15,16 @@
         android:theme="@style/Theme.Sn2app"
         tools:targetApi="31">
         <activity
+            android:name=".CategoryProductsScreen"
+            android:exported="false"
+            android:label="@string/title_activity_category_products_screen"
+            android:theme="@style/Theme.Sn2app" />
+        <activity
+            android:name=".ProductCategoryScreen"
+            android:exported="false"
+            android:label="@string/title_activity_product_category_screen"
+            android:theme="@style/Theme.Sn2app" />
+        <activity
             android:name=".ProductsScreen"
             android:exported="false"
             android:label="@string/title_activity_products_screen"

@@ -8,4 +8,6 @@
     <string name="title_activity_category">Category</string>
     <string name="title_activity_product">Product</string>
     <string name="title_activity_product_repository">ProductRepository</string>
+    <string name="title_activity_product_category_screen">ProductCategoryScreen</string>
+    <string name="title_activity_category_products_screen">CategoryProductsScreen</string>
 </resources>
