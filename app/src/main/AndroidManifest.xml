@@ -14,7 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sn2app"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ProductsScreen"
+            android:exported="false"
+            android:label="@string/title_activity_products_screen"
+            android:theme="@style/Theme.Sn2app" />
+        <activity
+            android:name=".ProductRepository"
+            android:exported="false"
+            android:label="@string/title_activity_product_repository"
+            android:theme="@style/Theme.Sn2app" />
+        <activity
+            android:name=".model.Product"
+            android:exported="false"
+            android:label="@string/title_activity_product"
+            android:theme="@style/Theme.Sn2app" />
+        <activity
+            android:name=".model.Category"
+            android:exported="false"
+            android:label="@string/title_activity_category"
+            android:theme="@style/Theme.Sn2app" />
         <activity
             android:name=".PersonPage"
             android:exported="false"
@@ -30,13 +49,13 @@
             android:exported="false"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/Theme.Sn2app" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Sn2app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

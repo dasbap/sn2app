@@ -40,9 +40,19 @@ android {
 }
 
 dependencies {
-    implementation(libs.ui)
-    implementation(libs.material3)
-    implementation(libs.androidx.navigation.compose.v250)
-    implementation(libs.androidx.activity.compose.v160)
-    implementation(libs.androidx.ui.tooling.preview.android)
+
+    implementation(libs.androidx.compose.ui.ui.v150.x9)
+    implementation(libs.androidx.material3.v100)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.activity.compose.v170)
+    implementation(libs.okhttp.v4100)
+    implementation(libs.json)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
 }
+

@@ -30,6 +30,7 @@ fun HomeScreen(navController: NavController) {
         ) {
             Text("Go to Products Page")
         }
+
     }
 }
 
