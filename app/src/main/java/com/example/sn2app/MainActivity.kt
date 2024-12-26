@@ -31,7 +31,11 @@ class MainActivity : ComponentActivity() {
                         composable("info") {
                             InfoScreen(navController)
                         }
+                        composable("personPage/{personName}") { backStackEntry ->
+                            PersonPage(personName = backStackEntry.arguments?.getString("personName"))
+                        }
                     }
+
                 }
             }
         }
