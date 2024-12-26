@@ -46,11 +46,10 @@ class MainActivity : ComponentActivity() {
                         composable("products") {
                             ProductsScreen(navController)
                         }
-                        composable("categoryProducts/{categoryUrl}") { backStackEntry ->
-                            val categorytitle = backStackEntry.arguments?.getString("title")
-                            categorytitle?.let {
-                                CategoryProductsScreen(navController = navController, categoryName = categorytitle)
-                            }
+                        composable("categoryProducts/{productUrl}") { backStackEntry ->
+                            val productUrl = backStackEntry.arguments?.getString("productUrl")
+                            CategoryProductsScreen(navController = navController, categoryName = productUrl)
+
                         }
                     }
                 }

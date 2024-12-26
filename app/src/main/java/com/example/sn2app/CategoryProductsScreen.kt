@@ -15,20 +15,17 @@ import com.example.sn2app.model.Product
 
 @Composable
 fun CategoryProductsScreen(navController: NavController, categoryName: String?) {
-    // L'URL pour récupérer les produits
     val productUrl = "https://api.jsonbin.io/v3/b/$categoryName"
 
-    // État pour stocker les produits et l'état de chargement
     val productsState = remember { mutableStateListOf<Product>() }
     val isLoading = remember { mutableStateOf(true) }
 
-    // Utiliser LaunchedEffect pour charger les produits
     LaunchedEffect(Unit) {
         if (categoryName != null) {
             ProductRepository().fetchProducts(productUrl) { fetchedProducts ->
-                productsState.clear() // Nettoyer la liste avant d'ajouter les nouveaux produits
+                productsState.clear()
                 productsState.addAll(fetchedProducts)
-                isLoading.value = false // Changer l'état de chargement une fois que les données sont récupérées
+                isLoading.value = false
             }
         }
     }
@@ -41,7 +38,6 @@ fun CategoryProductsScreen(navController: NavController, categoryName: String?) 
                 CircularProgressIndicator()
             }
         } else {
-            // Afficher la liste des produits avec LazyColumn
             LazyColumn {
                 items(productsState) { product ->
                     ProductItem(product)
@@ -54,9 +50,9 @@ fun CategoryProductsScreen(navController: NavController, categoryName: String?) 
 @Composable
 fun ProductItem(product: Product) {
     Column(modifier = Modifier.padding(8.dp)) {
-        Text(text = product.name, modifier = Modifier.padding(bottom = 4.dp))
-        Text(text = product.description, modifier = Modifier.padding(bottom = 4.dp))
-        Text(text = product.pictureUrl, modifier = Modifier.padding(bottom = 4.dp))
+        Text(text = product.name.toString(), modifier = Modifier.padding(bottom = 4.dp))
+        Text(text = product.description.toString(), modifier = Modifier.padding(bottom = 4.dp))
+        Text(text = product.pictureUrl.toString(), modifier = Modifier.padding(bottom = 4.dp))
     }
 }
 

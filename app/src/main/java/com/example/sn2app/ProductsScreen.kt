@@ -41,7 +41,8 @@ fun ProductsScreen(navController: NavController) {
             LazyColumn {
                 items(categoriesState) { category ->
                     Button(onClick = {
-                        val url = category.productsUrl.replace("https://api.jsonbin.io/v3/b/", "")
+                        var url = category.productsUrl
+                        url = url.replace("https://api.jsonbin.io/v3/b/", "")
                         navController.navigate("categoryProducts/$url")
                     }) {
                         Text(text = category.title)

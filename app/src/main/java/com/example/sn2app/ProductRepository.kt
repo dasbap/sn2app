@@ -45,7 +45,7 @@ class ProductRepository {
                             val category = Category(
                                 categoryObject.optString("categoryId", ""),
                                 categoryObject.optString("title", ""),
-                                categoryObject.optString("productsUrl", "")
+                                categoryObject.optString("products_url", "")
                             )
                             categories.add(category)
                         }
