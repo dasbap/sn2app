@@ -18,7 +18,6 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.sn2app.model.Product
 
-
 @Composable
 fun CategoryProductsScreen(navController: NavController, categoryName: String?, categoryUrl: String?) {
     val productUrl = "https://api.jsonbin.io/v3/b/$categoryUrl"
@@ -62,7 +61,7 @@ fun ProductItem(product: Product, navController: NavController) {
                     "productDetails/${Uri.encode(product.name)}/${Uri.encode(product.description)}/${Uri.encode(product.pictureUrl)}"
                 )
             },
-        verticalAlignment = Alignment.CenterVertically // Aligne l'image et le texte horizontalement
+        verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = product.pictureUrl,
@@ -77,8 +76,6 @@ fun ProductItem(product: Product, navController: NavController) {
         )
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sn2app.model.Category
-import androidx.compose.foundation.layout.Box as Box1
 
 @Composable
 fun ProductsScreen(navController: NavController) {
@@ -26,7 +25,6 @@ fun ProductsScreen(navController: NavController) {
     val isLoadingCategories = remember { mutableStateOf(true) }
     val productRepository = ProductRepository()
 
-    // Récupérer les catégories depuis l'API
     LaunchedEffect(Unit) {
         productRepository.getCategories { categories ->
             categoriesState.clear()
@@ -35,12 +33,14 @@ fun ProductsScreen(navController: NavController) {
         }
     }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier
+        .padding(16.dp)
+        .fillMaxSize()) {
         if (isLoadingCategories.value) {
             CircularProgressIndicator()
         } else {
-            Text("Rayon")
-            LazyColumn {
+            Text("Rayon", modifier = Modifier.padding(bottom = 8.dp))
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(categoriesState) { category ->
                     Button(onClick = {
                         var url = category.productsUrl
