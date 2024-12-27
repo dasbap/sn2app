@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sn2app.model.Category
+import androidx.compose.foundation.layout.Box as Box1
 
 @Composable
 fun ProductsScreen(navController: NavController) {
@@ -38,12 +39,13 @@ fun ProductsScreen(navController: NavController) {
         if (isLoadingCategories.value) {
             CircularProgressIndicator()
         } else {
+            Text("Rayon")
             LazyColumn {
                 items(categoriesState) { category ->
                     Button(onClick = {
                         var url = category.productsUrl
                         url = url.replace("https://api.jsonbin.io/v3/b/", "")
-                        navController.navigate("categoryProducts/$url")
+                        navController.navigate("categoryProducts/${category.title}/$url")
                     }) {
                         Text(text = category.title)
                     }

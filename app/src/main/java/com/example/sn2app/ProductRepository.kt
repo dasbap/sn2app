@@ -90,7 +90,7 @@ class ProductRepository {
                             val product = Product(
                                 productObject.optString("name", ""),
                                 productObject.optString("description", ""),
-                                productObject.optString("pictureUrl", "")
+                                productObject.optString("picture_url", "")
                             )
                             products.add(product)
                         }

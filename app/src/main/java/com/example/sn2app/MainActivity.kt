@@ -1,6 +1,5 @@
 package com.example.sn2app
 
-import CategoryProductsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 
 import com.example.sn2app.ui.theme.Sn2appTheme
 
@@ -46,11 +47,28 @@ class MainActivity : ComponentActivity() {
                         composable("products") {
                             ProductsScreen(navController)
                         }
-                        composable("categoryProducts/{productUrl}") { backStackEntry ->
+                        composable("categoryProducts/{categoryProduct}/{productUrl}") { backStackEntry ->
                             val productUrl = backStackEntry.arguments?.getString("productUrl")
-                            CategoryProductsScreen(navController = navController, categoryName = productUrl)
+                            val categoryProduct = backStackEntry.arguments?.getString("categoryProduct")
+                            CategoryProductsScreen(navController = navController,categoryName = categoryProduct, categoryUrl = productUrl)
 
                         }
+                        composable(
+                            route = "productDetails/{name}/{description}/{pictureUrl}",
+                            arguments = listOf(
+                                navArgument("name") { type = NavType.StringType },
+                                navArgument("description") { type = NavType.StringType },
+                                navArgument("pictureUrl") { type = NavType.StringType }
+                            )
+                        ) { backStackEntry ->
+                            val name = backStackEntry.arguments?.getString("name")
+                            val description = backStackEntry.arguments?.getString("description")
+                            val pictureUrl = backStackEntry.arguments?.getString("pictureUrl")
+
+                            ProductDetailsScreen(navController, name, description, pictureUrl)
+                        }
+
+
                     }
                 }
             }
