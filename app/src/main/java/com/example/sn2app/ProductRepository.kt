@@ -1,3 +1,5 @@
+package com.example.sn2app
+
 import android.util.Log
 import com.example.sn2app.model.Category
 import com.example.sn2app.model.Product

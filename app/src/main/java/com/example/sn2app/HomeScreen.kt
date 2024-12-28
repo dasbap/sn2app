@@ -1,58 +1,82 @@
 package com.example.sn2app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.sn2app.ui.SplashScreen
+
 import com.example.sn2app.ui.theme.Sn2appTheme
 
 // Écran d'accueil
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Titre de l'écran d'accueil
-        Text(
-            text = "Welcome to the Home Page!",
-            style = MaterialTheme.typography.headlineMedium
-        )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "Home Page",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            )
+        },
+        content = { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Titre principal
+                Text(
+                    text = "Welcome to the Home Page!",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
-        // Bouton pour accéder à la page Info
-        Button(
-            onClick = { navController.navigate("info") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        ) {
-            Text("Go to Info Page")
+                // Bouton pour accéder à la page Info
+                Button(
+                    onClick = { navController.navigate("info") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp)
+                ) {
+                    Text("Go to Info Page")
+                }
+
+                // Bouton pour accéder à la page des produits
+                Button(
+                    onClick = { navController.navigate("products") },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Go to Products Page")
+                }
+            }
         }
-
-        // Bouton pour accéder à la page des produits
-        Button(
-            onClick = { navController.navigate("products") },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Go to Products Page")
-        }
-    }
+    )
 }
 
 // Prévisualisation de l'écran d'accueil
@@ -65,6 +89,7 @@ fun HomeScreenPreview() {
 }
 
 // Activité de l'écran Splash
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,10 +100,26 @@ class SplashActivity : ComponentActivity() {
             }
         }
 
-        // Délai de 2 secondes avant de passer à MainActivity
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish() // Ferme l'activité Splash après la transition
         }, 2000)
+    }
+}
+
+// Écran Splash
+@Composable
+fun SplashScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "My App",
+            style = MaterialTheme.typography.displayLarge,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
     }
 }
