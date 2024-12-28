@@ -11,4 +11,5 @@
     <string name="title_activity_product_category_screen">ProductCategoryScreen</string>
     <string name="title_activity_category_products_screen">CategoryProductsScreen</string>
     <string name="title_activity_product_details_screen">ProductDetailsScreen</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

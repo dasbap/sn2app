@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
+import com.example.sn2app.ui.PersonPage
 
 import com.example.sn2app.ui.theme.Sn2appTheme
 
@@ -42,7 +43,8 @@ class MainActivity : ComponentActivity() {
                             InfoScreen(navController)
                         }
                         composable("personPage/{personName}") { backStackEntry ->
-                            PersonPage(personName = backStackEntry.arguments?.getString("personName"))
+                            backStackEntry.arguments?.getString("personName")
+                                ?.let { PersonPage(personName = it) }
                         }
                         composable("products") {
                             ProductsScreen(navController)
